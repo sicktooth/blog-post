@@ -36,3 +36,31 @@
 #post {
     margin-bottom: 12px;
 }
+.pen, .pen:hover, .pen:focus {
+    display: flex;
+    justify-self: right;
+    text-decoration: none;
+    color: white;
+    transition: background-color ease 0.4s;;
+}
+.pen div{
+    display: flex;
+    background-color: #1abc9c;
+    border-radius: 13px;
+    outline-color: #fff;
+    align-items: center;
+    justify-content: right;
+}
+.pen:hover div{
+    background-color: #66ceb9;
+}
+.pen span {
+    display: none;
+    padding: 6px;
+    opacity: 0;
+    transition: all ease 0.9s;
+}
+.pen:hover span {
+    display: block;
+    opacity: 1; 
+}
