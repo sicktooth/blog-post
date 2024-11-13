@@ -1,17 +1,17 @@
 <%- include('partials/header') %>
-<div>
-    <h1>Home</h1>
-    <p>
-        <%= firstPara %>
-    </p>
-</div>
+    <div>
+        <h1>Home</h1>
+        <p>
+            <%= firstPara %>
+        </p>
+    </div>
 
 
     <% posts.forEach((post) => {%>
 
             <div class="post">
                 <h1><%= post.title %></h1>
-                <p><%= post.content.substring(0, 100) + '...' %><a href="posts/<%= post.title %>">Read More</a></p>
+                <p><%= post.content.substring(0, 100) + '...' %><a href="<%= userName %>/posts/<%= post.id %>">Read More</a></p>
             </div>
 
             
@@ -19,7 +19,7 @@
     <% }); %>
         <!-- <div class="pen"> -->
             <!-- <button type="button"> -->
-                <a class="pen" href="/compose">
+                <a class="pen" href="<%= userName %>/compose">
                     <div>
                         <%- include("../public/img/pen.svg") %>
                         <span>Compose</span>
@@ -29,6 +29,5 @@
                 
             <!-- </button> -->
         <!-- </div> -->
-        
 
 <%- include('partials/footer') %>
