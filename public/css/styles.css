@@ -69,3 +69,8 @@ footer p {
     display: block;
     opacity: 1; 
 }
+.pen-container {
+    position: fixed;
+    right: 80px;
+    bottom: 60px;
+}

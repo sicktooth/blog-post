@@ -17,12 +17,14 @@
             
         
     <% }); %>
-    <a class="pen" href="<%= userName %>/compose">
-        <div>
-            <%- include("../public/img/pen.svg") %>
-            <span>Compose</span>
-        </div>
-        
-    </a>
+    <div class="pen-container">
+        <a class="pen" href="<%= userName %>/compose">
+            <div>
+                <%- include("../public/img/pen.svg") %>
+                <span>Compose</span>
+            </div>
+        </a>
+    </div>
+    
 
 <%- include('partials/footer') %>
