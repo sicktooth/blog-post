@@ -1,5 +1,5 @@
 const {homePost} = require('../model/default_posts')
-const {UserPost} = require('../config/blog_post')
+const {UserPost} = require('../config/database')
 
 async function getPosts(user,res) {
     try {

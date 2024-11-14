@@ -6,7 +6,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
-const {connectDB} = require('./config/blog_post')
+const {connectDB} = require('./config/database')
 const {rootRoute,aboutRoute,contactRoute, userRoute, userComposeRoute, userPostRoute} = require('./routes/get');
 const { postUserName, addNewPost } = require('./routes/post');
 

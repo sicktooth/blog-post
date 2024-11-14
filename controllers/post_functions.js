@@ -1,4 +1,4 @@
-const {UserPost} = require('../config/blog_post')
+const {UserPost} = require('../config/database')
 
 async function checkIfUserExists(user_name,res) {
     try {
