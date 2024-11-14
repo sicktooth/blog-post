@@ -15,12 +15,9 @@ const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pelle
 const homePost = " Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing";
 
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
-mongoose.connect('mongodb://localhost:27017/blogPostDB');
 
-const defaultPost = {
-  title: "Home",
-  content: "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing."
-}
+
+mongoose.connect('mongodb://localhost:27017/blogPostDB');
 
 const postSchema = new mongoose.Schema({
   title: String,
@@ -38,6 +35,18 @@ const UserPost = mongoose.model('UserPost', blogPostSchema)
 app.get("/", function(req, res) {
   res.render('form')
 });
+
+app.get("/about", function(req, res) {
+  res.render('about',{
+    aboutPara: aboutContent
+  })
+})
+
+app.get("/contact", function(req, res) {
+  res.render('contact',{
+    contactPara: contactContent
+  })
+})
 
 app.post('/', (req, res)=>{
   let input = _.lowerCase(req.body.userName)
@@ -85,18 +94,6 @@ app.get('/:userName', (req,res)=>{
   getPosts();
 })
 
-app.get("/about", function(req, res) {
-  res.render('about',{
-    aboutPara: aboutContent
-  })
-})
-
-app.get("/contact", function(req, res) {
-  res.render('contact',{
-    contactPara: contactContent
-  })
-})
-
 app.get("/:userName/compose", function(req, res){
   let user = req.params.userName;
   res.render('compose',{userName: user})
@@ -124,48 +121,35 @@ app.post("/compose", function(req, res){
  
 })
 
-// app.get('/:home', (req, res)=>{
-//   let userInput = _.lowerCase(req.params.home);
-//   if (userInput === 'home') {
-//     res.redirect('/')
-//   }
-// });
-
 app.get("/:userName/posts/:postId", function(req, res){
   let user = req.params.userName;
   let post = req.params.postId;
-  async function getOnePost() {
+
+
+  async function getPostFromNestedArray(postId) {
     try {
-      results = await UserPost.findOne({userName: user});
-      console.log(results);
-      
+      const foundPost = await UserPost.findOne({ userName: user });
+  
+      if (foundPost) {
+        const blog = foundPost.blog.find(blog => blog._id.toString() === postId.toString());
+        if (blog) {
+          console.log("Found post:", blog);
+          res.render('post', {
+            title: blog.title,
+            content: blog.content
+          });
+        } else {
+          console.log("post not found in the list of blog post.");
+        }
+      } else {
+        console.log("Post not found.");
+      }
     } catch (error) {
-      console.log(error);
+      console.error("Error retrieving post:", error);
     }
   }
-  getOnePost();
-  // let requestedTitle = _.lowerCase(req.params.postName);
-  // let requestedTitleInKabab = _.kebabCase(requestedTitle);
-  // posts.forEach(post => {
-  //   let storedTitle = _.lowerCase(post.title);
-  //   let storedTitleInKabab = _.kebabCase(storedTitle);
-
-  //   if (requestedTitleInKabab === storedTitleInKabab) {
-  //     // console.log("match found");
-  //     res.render("post", {
-  //       title: post.title,
-  //       content: post.content
-  //     })
-  //   } else {
-  //     console.log("match not found");
-  //   }
-  // });
   
-  
-  // console.log(req.params.postName);
-  // console.log(posts);
-  
-
+  getPostFromNestedArray(post);
 })
 
 app.listen(PORT, function() {
