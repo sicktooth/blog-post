@@ -37,9 +37,6 @@ footer p {
 	font-size: 12px;
   color: #fff;
 }
-#post {
-    margin-bottom: 12px;
-}
 .pen, .pen:hover, .pen:focus {
     display: flex;
     justify-self: right;
@@ -70,7 +67,6 @@ footer p {
     opacity: 1; 
 }
 .pen-container {
-    position: fixed;
     right: 80px;
     bottom: 60px;
 }

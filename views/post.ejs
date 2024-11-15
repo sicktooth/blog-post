@@ -1,4 +1,18 @@
 <%- include('partials/header') %>
-<h1><%= title %></h1>
-<p><%= content %></p>
+<div class="box flex">
+    <div>
+        <h1><%= title %></h1>
+        <p><%= content %></p>
+    </div>
+    <form action="/delete" method="post" class="pen">
+        <div>
+            <button name="delete" type="submit" value="<%= post %>">
+                <%- include("../public/img/pen.svg") %>
+            </button>
+            <input type="hidden" name="user" value="<%= userName %>">
+        </div>
+        
+    </form>
+</div>
+
 <%- include('partials/footer') %>

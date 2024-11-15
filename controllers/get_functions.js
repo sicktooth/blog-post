@@ -25,7 +25,9 @@ async function getOneUserPost(postId, user, res) {
         if (blog) {
           res.render('post', {
             title: blog.title,
-            content: blog.content
+            content: blog.content,
+            userName: user,
+            post: postId
           });
         } else {
           console.log("blog not found in the list of blog post.");

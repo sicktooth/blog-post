@@ -9,7 +9,7 @@
 
     <% posts.forEach((post) => {%>
 
-            <div class="post">
+            <div class="mb-4">
                 <h1><%= post.title %></h1>
                 <p><%= post.content.substring(0, 100) + '...' %><a href="<%= userName %>/posts/<%= post.id %>">Read More</a></p>
             </div>
@@ -17,7 +17,7 @@
             
         
     <% }); %>
-    <div class="pen-container">
+    <div class="pen-container position-fixed">
         <a class="pen" href="<%= userName %>/compose">
             <div>
                 <%- include("../public/img/pen.svg") %>

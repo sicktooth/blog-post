@@ -9,6 +9,7 @@ app.set('view engine', 'ejs');
 const {connectDB} = require('./config/database')
 const {rootRoute,aboutRoute,contactRoute, userRoute, userComposeRoute, userPostRoute} = require('./routes/get');
 const { postUserName, addNewPost } = require('./routes/post');
+const { deletePost } = require('./routes/delete');
 
 connectDB();
 
@@ -27,6 +28,8 @@ app.get("/:userName/compose", userComposeRoute)
 app.post("/compose", addNewPost)
 
 app.get("/:userName/posts/:postId", userPostRoute)
+
+app.post('/delete', deletePost);
 
 app.listen(PORT, function() {
   console.log("Server started on port " + PORT);
