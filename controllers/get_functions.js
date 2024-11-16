@@ -16,18 +16,24 @@ async function getPosts(user,res) {
     }
 }
 
-async function getOneUserPost(postId, user, res) {
+async function getOneUserPost(postId, user, res,ejsFile, route) {
     try {
       const foundPost = await UserPost.findOne({ userName: user });
   
       if (foundPost) {
         const blog = foundPost.blog.find(blog => blog._id.toString() === postId.toString());
         if (blog) {
-          res.render('post', {
+          res.render(ejsFile, {
             title: blog.title,
             content: blog.content,
             userName: user,
-            post: postId
+            post: postId,
+            postId: postId,
+            editTitle: blog.title,
+            editBody: blog.content,
+            actionRoute: route,
+            header: "Edit Post",
+            footer: "Save"
           });
         } else {
           console.log("blog not found in the list of blog post.");

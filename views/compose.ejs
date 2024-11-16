@@ -1,12 +1,13 @@
 <%- include('partials/header') %>
-<h1>Compose</h1>
-<form action="/compose" method="post">
+<h1><%= header %></h1>
+<form action=<%= actionRoute %> method="post">
     <div class="form-group">
         <label for="title">Title</label><br>
-        <input type="text" id="title" name="postTitle" class="form-control"><br>
+        <input type="text" id="title" value="<%= editTitle %>" name="postTitle" class="form-control"><br>
         <label for="post">Post</label><br>
-        <textarea name="postBody" id="post" class="form-control" cols="30" rows="5"></textarea>
-        <button type="submit" name="submit" value="<%= userName %>" class="btn btn-primary">Publish</button>
+        <textarea name="postBody" value="<%= editBody %>" id="post" class="form-control" cols="30" rows="5"></textarea>
+        <input type="hidden" name="user" value="<%= postId %>">
+        <button type="submit" name="submit" value="<%= userName %>" class="btn btn-primary"><%= footer %></button>
     </div>
     
     

@@ -10,14 +10,19 @@ const userRoute = (req, res)=> {
 }
 const userComposeRoute = (req, res)=>{
     let user = req.params.userName;
-    res.render('compose',{userName: user})
+    res.render('compose',{userName: user, postId: null, actionRoute: '/compose', editTitle: "", editBody: '',header: "Compose", footer: "Publish"})
 }
 const userPostRoute = (req, res)=> {
     let user = req.params.userName;
     let postId = req.params.postId; 
-    getOneUserPost(postId,user,res);
+    getOneUserPost(postId,user,res,'post');
 }
 
+const postEditRoute = (req, res) => {
+    let user = req.params.userName;
+    let postID = req.params.postId;
+    getOneUserPost(postID,user,res,'compose', "/update");
+}
 
 module.exports = {
     rootRoute,
@@ -25,5 +30,6 @@ module.exports = {
     contactRoute,
     userRoute,
     userComposeRoute,
-    userPostRoute
+    userPostRoute,
+    postEditRoute
 }

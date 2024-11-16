@@ -7,9 +7,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 const {connectDB} = require('./config/database')
-const {rootRoute,aboutRoute,contactRoute, userRoute, userComposeRoute, userPostRoute} = require('./routes/get');
+const {rootRoute,aboutRoute,contactRoute, userRoute, userComposeRoute, userPostRoute, postEditRoute} = require('./routes/get');
 const { postUserName, addNewPost } = require('./routes/post');
 const { deletePost } = require('./routes/delete');
+const { updatePost } = require('./routes/put');
 
 connectDB();
 
@@ -28,6 +29,10 @@ app.get("/:userName/compose", userComposeRoute)
 app.post("/compose", addNewPost)
 
 app.get("/:userName/posts/:postId", userPostRoute)
+
+app.get("/:userName/posts/:postId/update", postEditRoute)
+
+app.post("/update", updatePost)
 
 app.post('/delete', deletePost);
 
