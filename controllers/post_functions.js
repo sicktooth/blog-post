@@ -4,7 +4,7 @@ async function checkIfUserExists(user_name,res) {
     try {
       let results = await UserPost.findOne({userName: user_name});
       if (results) {
-        // console.log(results);
+        // console.log("user exists");
         
         res.redirect('/'+ user_name)
       } else {

@@ -1,7 +1,8 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
-const connectDB = ()=> mongoose.connect('mongodb://localhost:27017/blogPostDB');
+const connectDB = ()=> mongoose.connect('mongodb+srv://sicktooth003:'+process.env.remoteDB_connect_password+'@cluster0.diwwq.mongodb.net/blogPostDB');
 const postSchema = new Schema({
     title: String,
     content: String
