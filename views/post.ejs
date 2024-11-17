@@ -1,18 +1,32 @@
 <%- include('partials/header') %>
-<div class="box flex">
-    <div><a href="/<%= userName %>">Back</a></div>
+<div>
+    <div class="mb-4"><a href="/<%= userName %>">
+        <%- include("../public/img/back.svg") %>
+    </a></div>
     <div>
         <h1><%= title %></h1>
         <p><%= content %></p>
     </div>
     
-    <form action="/delete" method="post" class="pen">
-        <div class="d-flex gap-3">
-            <button name="delete" type="submit" value="<%= post %>">
-                <%- include("../public/img/pen.svg") %>
-            </button>
+    <form action="/delete" method="post">
+        <div class="d-flex gap-5">
+            <div class="ms-auto">
+                <button name="delete" type="submit" value="<%= post %>" class="bg-danger delete border-0">
+                    <div>
+                        <%- include("../public/img/delete.svg") %>
+                    </div>
+                 </button>
+            </div>
+            
             <input type="hidden" name="user" value="<%= userName %>">
-            <a href="/<%= userName %>/posts/<%= post %>/update">Edit</a>
+            <div class="">
+                <a class="pen" href="/<%= userName %>/posts/<%= post %>/update">
+                    <div >
+                        <%- include("../public/img/pen.svg") %>
+                        <span>Edit Post</span>
+                    </div>
+                </a>
+            </div>
         </div>
         
     </form>

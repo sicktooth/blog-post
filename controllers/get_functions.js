@@ -33,7 +33,8 @@ async function getOneUserPost(postId, user, res,ejsFile, route) {
             editBody: blog.content,
             actionRoute: route,
             header: "Edit Post",
-            footer: "Save"
+            footer: "Save",
+            cancel: `/${user}/posts/${postId}`
           });
         } else {
           console.log("blog not found in the list of blog post.");

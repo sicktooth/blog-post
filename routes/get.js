@@ -10,7 +10,7 @@ const userRoute = (req, res)=> {
 }
 const userComposeRoute = (req, res)=>{
     let user = req.params.userName;
-    res.render('compose',{userName: user, postId: null, actionRoute: '/compose', editTitle: "", editBody: '',header: "Compose", footer: "Publish"})
+    res.render('compose',{userName: user, postId: null, actionRoute: '/compose', editTitle: "", editBody: '',header: "Compose", footer: "Publish", cancel: `/${user}`})
 }
 const userPostRoute = (req, res)=> {
     let user = req.params.userName;
