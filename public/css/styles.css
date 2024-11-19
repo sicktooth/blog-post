@@ -80,3 +80,23 @@ footer p {
 .delete {
     border-radius: 13px;
 }
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.mobile-nav {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .desktop-nav{
+        display: none !important;
+    }
+    .mobile-nav {
+        display: block;
+    }
+    .pen-container {
+        right: 30px;
+    }
+}
