@@ -3,9 +3,9 @@
 <form action=<%= actionRoute %> method="post">
     <div class="form-group">
         <label for="title">Title</label><br>
-        <input type="text" id="title" value="<%= editTitle %>" name="postTitle" class="form-control"><br>
+        <input type="text" id="title" value="<%= editTitle %>" name="postTitle" class="form-control" required><br>
         <label for="post">Post</label><br>
-        <textarea name="postBody" id="post" class="form-control" cols="30" rows="5"><%= editBody %></textarea>
+        <textarea name="postBody" id="post" class="form-control" cols="30" rows="5" required><%= editBody %></textarea>
         <input type="hidden" name="user" value="<%= postId %>">
         <div class="d-flex">
             <button type="submit" name="submit" value="<%= userName %>" class="btn mt-3 btn-primary"><%= footer %></button>
