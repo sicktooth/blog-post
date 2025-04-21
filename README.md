@@ -21,7 +21,7 @@ Users should be able to:
 - Add a new post
 - Edit the post
 - Delete existing posts
-- View each post in a new post 
+- View each post in a new page
 
 
 ### Screenshot
