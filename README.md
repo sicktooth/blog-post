@@ -30,7 +30,8 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Live Page](https://blog-post-production-eda6.up.railway.app)
+- Live Site URL: [Live Page 1](https://blog-post-production-eda6.up.railway.app)
+                 [Live Page 2](https://blog-post-7wlq.onrender.com/sammy)
 
 ## My Process
 
